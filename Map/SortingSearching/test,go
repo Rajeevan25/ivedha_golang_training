@@ -1,0 +1,54 @@
+package main
+
+import (
+	"fmt"
+	"sort"
+)
+
+func reverseMap(m map[string]int) map[int]string  {
+	reverseMap := map[int]string{}
+	for k,v := range m {
+		reverseMap[v] = k	
+	}
+	return reverseMap
+}
+
+func main() {
+	ages := map[string]int{}
+    ages["Alice"] = 25
+	ages["Bob"] = 30
+	ages["John"] = 30
+	ages["Charlie"] = 28
+    delete(ages,"Alice")
+	ages["Charlie"] = 32
+
+
+	// scores := map[string]float64{
+	// 	"maths" : 92.5,
+	// 	"science": 83,
+	// 	"history": 85,
+	// 	"english": 75.3,
+	// 	"commerce" : 67.8,
+	// }
+
+    sortAges := map[string]int{}
+	var keys [] string
+	for  k := range ages {
+		keys = append(keys, k)
+	}
+	sort.Strings(keys)
+	for _,k := range keys {
+		value := ages[k]
+		sortAges[k] = value	
+	}
+	fmt.Println(sortAges)
+	
+    if age, ok := ages["Bob"]; ok {
+		fmt.Println("Bob's age is ", age)
+	} else {
+		fmt.Println("Not found")
+	}
+
+
+	fmt.Println("the reversed map is ",reverseMap(ages))
+}
